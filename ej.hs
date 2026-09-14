@@ -33,6 +33,8 @@ absoluto x | x < 0 = x * (-1)
 sumaUlt2Digitos:: Int ->Int
 sumaUlt2Digitos x = digitoUnidades x + digitoDecenas x
 
+--------------------------------------------------------
+
 capicua:: (Eq t) => [t] -> Bool
 capicua [] = True
 capicua (x:xs) | (x:xs) == inverso (x:xs) = True
