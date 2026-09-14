@@ -16,24 +16,24 @@ sumatoria:: [Integer] -> Integer
 sumatoria [] = 0
 sumatoria (x:xs) = x + sumatoria xs
 
-quitar:: (Eq t) => t -> [t] -> [t]
-quitar e [] = []
-quitar e (x:xs) | e == x = xs
-                | otherwise = (x:(quitar e xs))
-
+maximo1:: [Integer] -> Integer
+maximo1 (x:y:xs) | x > y = maximo1 (x:xs)
+                 | otherwise = maximo1 (y:xs)
 
 maximo:: [Integer] -> Integer
 maximo [] = 0
 maximo (x:xs) |x > (maximo xs) = x
               |otherwise = maximo xs
 
-maximo1:: [Integer] -> Integer
-maximo1 (x:y:xs) | x > y = maximo1 (x:xs)
-                 | otherwise = maximo1 (y:xs)
+quitar:: (Eq t) => t -> [t] -> [t]
+quitar e [] = []
+quitar e (x:xs) | e == x = xs
+                | otherwise = (x:(quitar e xs))
+
 
 ordenar:: [Integer] -> [Integer]
 ordenar [] = []
-ordenar xs maxXs: ordenar (quitar maxXs xs)
+ordenar xs = maxXs : ordenar (quitar maxXs xs)
     where maxXs = maximo xs
 
 ordenarAsc:: [Integer] -> [Integer]
