@@ -247,7 +247,65 @@ sumarTodos:: (Num t) => t -> [t] -> [t]
 sumarTodos _ [] = []
 sumarTodos n (y:ys) = (n + y) : sumarTodos n ys
 
+
 -- ejercicio 5.2
 descomponerEnPrimos:: [Integer] -> [[Integer]]
+descomponerEnPrimos [] = []
+descomponerEnPrimos (x:xs) = susDivPrimos x : descomponerEnPrimos xs
 
+susDivPrimos:: Integer -> [Integer]
+susDivPrimos n = factorizar n 2
+
+factorizar:: Integer -> Integer -> [Integer]
+factorizar 1 _ = []
+factorizar n d | mod n d == 0 = d : factorizar (div n d) d
+               | otherwise = factorizar n (d + 1)
+
+
+--filtrarPrimos:: [Integer] -> [Integer]
+--filtrarPrimos [] = []
+--filtrarPrimos (x:xs) | esPrimo x = x : filtrarPrimos xs
+--                     | otherwise = filtrarPrimos xs
+
+esPrimo:: Integer -> Bool
+esPrimo n | longitud (divide n n) == 2 = True
+          | otherwise = False
+
+
+esDivisor:: Integer -> Integer -> Bool      -- primero me fijo que cada numero que pruebe sea divisor de n
+esDivisor n i | mod n i == 0 = True
+              | otherwise = False
+
+divide:: Integer -> Integer -> [Integer]     -- busco los divispres de i hasta 0 que dividan a n y los guardo en una lista
+divide _ 0 = []
+divide n i | (esDivisor n i) = divide n (i-1) ++ [i]
+           | otherwise = divide n (i-1)
+
+
+-- EJERCICIO 6
+
+-- ejercicio 6a
+
+enLosContactos:: [Char] -> [([Char], [Char])] -> Bool
+enLosContactos _ [] = False
+enLosContactos nom ((nomb, tel):xs) | nom == nomb = True
+                                    | otherwise = enLosContactos nom xs
+
+
+-- ejercicio 6b
+
+agregarContacto:: ([Char], [Char]) -> [([Char], [Char])] -> [([Char], [Char])]
+agregarContacto [] [] = []
+agregarContacto [] (x:xs) = x:xs
+agregarContacto (nomb, tel) [] = [(nomb, tel)]
+agregarContacto (nomb, tel) (x:xs) | (enLosContactos nomb (x:xs) == True) 
+
+
+elNombre:: ([Char], [Char]) -> [Char]
+elNombre [] = []
+elNombre (nombre, tel) = nombre
+
+elTelefono:: ([Char], [Char]) -> [Char]
+elTelefono [] = []
+elTelefono (nombre, tel) = tel
 
