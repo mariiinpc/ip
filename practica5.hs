@@ -347,7 +347,4 @@ ocuparLocker n ((id, (estado, ubi)):xs) | n == id  = ((id, (False, ubi)):xs)
                                         | otherwise = (id, (estado, ubi)): ocuparLocker n xs
 
 
-elTelefono:: ([Char], [Char]) -> [Char]
-elTelefono [] = []
-elTelefono (nombre, tel) = tel
 
