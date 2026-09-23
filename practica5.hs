@@ -295,15 +295,57 @@ enLosContactos nom ((nomb, tel):xs) | nom == nomb = True
 -- ejercicio 6b
 
 agregarContacto:: ([Char], [Char]) -> [([Char], [Char])] -> [([Char], [Char])]
-agregarContacto [] [] = []
-agregarContacto [] (x:xs) = x:xs
 agregarContacto (nomb, tel) [] = [(nomb, tel)]
-agregarContacto (nomb, tel) (x:xs) | (enLosContactos nomb (x:xs) == True) 
+agregarContacto (nomb, tel) xs | (enLosContactos nomb xs == True) = nuevoNumTelefono (nomb, tel) xs
+                               | otherwise = (nomb, tel) : xs
+
+nuevoNumTelefono:: ([Char] , [Char]) -> [([Char], [Char])] -> [([Char], [Char])]
+nuevoNumTelefono _ [] = []
+nuevoNumTelefono (nom, tel) ((nomb, telefono):xs) | (nom == nomb) = (nom, tel):xs
+                                                  | otherwise = (nomb, telefono): nuevoNumTelefono (nom, tel) xs
 
 
 elNombre:: ([Char], [Char]) -> [Char]
-elNombre [] = []
 elNombre (nombre, tel) = nombre
+
+elTelefono:: ([Char], [Char]) -> [Char]
+elTelefono (nombre, tel) = tel
+
+-- ejercicio 6c
+
+eliminarContacto:: [Char] -> [([Char], [Char])] -> [([Char], [Char])]
+eliminarContacto _ [] = []
+eliminarContacto nombre ((nom, tel):xs) | nombre == nom = xs
+                                          | otherwise = (nom, tel) : eliminarContacto nombre xs
+
+
+-- EJERCICIO 7
+
+-- ejercicio 7.1
+
+existeLocker:: Integer -> [(Integer, (Bool, [Char]))] -> Bool
+existeLocker _ [] = False
+existeLocker n ((id, (estado, ubi)):xs) | n == id = True
+                                        | otherwise = existeLocker n xs
+
+-- ejercicio 7.2
+
+ubicacionDelLocker:: Integer -> [(Integer, (Bool, [Char]))] -> [Char]
+ubicacionDelLocker n ((id, (estado, ubi)):xs) | n == id = ubi
+                                              | otherwise = ubicacionDelLocker n xs
+
+-- ejercicio 7.3 
+
+estaDisponibleElLocker:: Integer -> [(Integer, (Bool, [Char]))] -> Bool
+estaDisponibleElLocker n ((id, (estado, ubi)):xs) | n == id = estado
+                                                  | otherwise = estaDisponibleElLocker n xs
+
+-- ejercicio 7.4
+
+ocuparLocker:: Integer -> [(Integer, (Bool, [Char]))] -> [(Integer, (Bool, [Char]))]
+ocuparLocker n ((id, (estado, ubi)):xs) | n == id  = ((id, (False, ubi)):xs)
+                                        | otherwise = (id, (estado, ubi)): ocuparLocker n xs
+
 
 elTelefono:: ([Char], [Char]) -> [Char]
 elTelefono [] = []
