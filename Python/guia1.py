@@ -69,3 +69,126 @@ class test_es_multiplo_de(unittest.TestCase):
 
 if __name__ == '__main__':
    unittest.main(verbosity=2)
+
+
+
+# clase 14 de octubre, ejercicios guia 1
+
+
+#1.9
+
+def palabras(s:list[str]) -> bool:
+    for p in s:
+        if len(p) > 7:
+            return True
+    return False
+
+# 1.10
+def reverso(s:str) -> str:
+    res: str = ""
+    for l in s:
+        res = l + res
+    return res
+
+def es_palidromo(s:str) -> bool:
+    if s == reverso(s):
+        return True
+    else:
+        return False
+
+
+
+#1.11
+
+def iguales_consecutivos(s:list[int]) -> bool:
+    for i in range(len(s)-2):
+        if s[i] == s[i+1] & s[i] == s[i+2]:
+            return True
+        else:
+            return False
+
+
+#1.12
+
+def minuscula(c:chr)-> chr:
+    min = None
+    if c == 'a' or c =='A':
+        min = 'a'
+    if c == 'e' or c =='E':
+            min = 'e'
+    if c == 'i' or c =='I':
+            min = 'i'
+    if c == 'o' or c =='O':
+            min = 'o'
+    if c == 'u' or c =='U':
+            min = 'u'
+    return min
+
+def vocales_distintas(s:str) -> bool:
+    vocales= []
+    for l in s:
+        if l in "aeiouAEIOU" and l not in vocales:
+            if minuscula(l) not in vocales:
+                vocales.append(l)
+    return len(vocales)>= 3
+        
+
+
+def sacar_repetidos(s:str) -> list[str]:
+    nuevapalabra= []
+    for l in s:
+        if l not in nuevapalabra:
+            nuevapalabra.append(l)
+    return nuevapalabra
+
+#1.13
+
+#def pos_secuencia_ordenada_mas_larga(s:list[int])-> int:
+#    lista_ordenada=[]
+#    while len(s) >= 1:
+#     for i in range(len(s)):
+#          if s[i]+1 <= s[i+1]:
+#            lista_ordenada = lista_ordenada + [s[i]] + [s[i+1]]
+#          else:
+#               lista_ordenada.remove(s[i])
+#
+#          for n in lista_ordenada:
+#               if s[i] == lista_ordenada[0]:
+#                    s.remove(s[i-1])
+#               for i in range(len(lista_ordenada)):
+#                s.remove(lista_ordenada[i])
+#    return 
+
+def pos_secuencia_ordenada_mas_larga(s:list[int])-> int:
+    mejor_inicio = 0
+    mejor_longitud = 1
+    inicio_actual= 0
+    longitud_actual= 1
+    for i in range (1,len(s)):
+        if s[i-1] <= s[i]:
+            longitud_actual += 1
+        else:
+             inicio_actual = 1
+             longitud_actual = 1
+        if longitud_actual > mejor_longitud:
+             mejor_inicio = inicio_actual
+             mejor_longitud = longitud_actual
+    return mejor_inicio
+
+
+#3.5.1
+
+def pertenece_a_cada_uno_version_1(s:list[list[int]], n: int) -> list[bool]: #-> list[bool]:
+    pass
+
+def columna(m: list[list[int]], c: int) -> list[int]:
+    col= []
+    for i in range (len(m)):
+        col.append(m[i][c])
+    return col
+
+def transponer(c: list[int]) -> list[list[int]]:
+     traspuesta= []
+     for i in range(len(c[0])):
+          traspuesta.append(columna(c,i))
+     return traspuesta
