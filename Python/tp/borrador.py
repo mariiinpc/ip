@@ -20,35 +20,40 @@ def posicion_en_tablero(pos : Posicion) -> bool:
 
 
 
-def ....
-mov = True
-if posicion_en_tablero(m[1]:
-      if m[0] = MOVER_A_SECAS:
-          for i in m[2]:
-                if i == 1:
-                      mov = True
-                else:
-                      mov = False
-      elif m[0] = ARRASTRAR:
-          for i in m[2]:
-                if i == 2:
-                      mov = True
-                else:
-                      mov = False
-      elif m[0] = EMPUJAR
-        if len (m[2]) == 1:
+def movimiento_bien_formado(m: Movimiento) -> bool:
+    mov = True
+    if posicion_en_tablero(m[1]:
+        if m[0] = MOVER_A_SECAS:
+          if len(m[2]) == 1:
             for i in m[2]:
-                  if i == 2:
+                if i == 1:
                         mov = True
-                  else:
+                else:
                         mov = False
-        else: 
-             mov = False
-      else:
-           mov = False
-else:
-    mov = False
+          else: 
+            mov = False
+        elif m[0] = ARRASTRAR:
+          if len(m[2]) == 1:
+            for i in m[2]:
+                if i == 2:
+                        mov = True
+                else:
+                        mov = False
+          else:
+            mov = False
+        elif m[0] = EMPUJAR
+            if len(m[2]) == 1:
+                for i in m[2]:
+                    if i == 2:
+                        mov = True
+                    else:
+                        mov = False
+            else: 
+                mov = False
+        else:
+            mov = False
+    else:
+        mov = False
 return mov
-
 
 
