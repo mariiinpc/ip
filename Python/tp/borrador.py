@@ -199,6 +199,6 @@ def posicion_vecina_hacia(pos : Posicion, d : Direccion) -> Posicion:
     elif d == OESTE:
         res = Posicion(fila, columna - 1)
     return res
-
+# ARREGLAR posiion_en_tablero EN POSICION USA DOS SUBINDICES Y ES UNA SOLA TUPLA
 
 qSNBi9w7QP8apZR contraseña gitlab
