@@ -170,5 +170,9 @@ def jugar_carton_de_bingo(carton: list[int], bolillero: Cola[int]) -> int:
                 carton.remove(numero_sacado)
     return contador
 
-
+def es_inicio_del_turno(j: Juego, col: Color) -> bool:
+    res: bool= False
+    if j[1] == col and j[2] == 0:
+       res: bool = True
+    return res
 
