@@ -176,3 +176,9 @@ def es_inicio_del_turno(j: Juego, col: Color) -> bool:
        res: bool = True
     return res
 
+
+
+
+
+
+qSNBi9w7QP8apZR contraseña gitlab
