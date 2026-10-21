@@ -176,7 +176,15 @@ def es_inicio_del_turno(j: Juego, col: Color) -> bool:
        res: bool = True
     return res
 
-
+def hay_pieza_amiga_vecina(t : Tablero, pos : Posicion) -> bool:
+    res: bool = False
+    d = [NORTE, SUR, ESTE, OESTE]
+    color_pieza:Color = (casilla_en_posicion(t, pos))[1]
+    for i in d:
+        pos_d = posicion_vecina_hacia(pos, d)
+        if posicion_en_tablero(pos_d) and hay_pieza_de_color(t,pos_d, color_pieza):
+             res = True
+    return res
 
 
 
