@@ -186,7 +186,19 @@ def hay_pieza_amiga_vecina(t : Tablero, pos : Posicion) -> bool:
              res = True
     return res
 
+def posicion_vecina_hacia(pos : Posicion, d : Direccion) -> Posicion:
+    fila = pos[0]
+    columna = pos[1]
 
+    if d == NORTE:
+        res = Posicion(fila + 1, columna)
+    elif d == SUR:
+        res = Posicion(fila - 1, columna)
+    elif d == ESTE:
+        res = Posicion(fila, columna + 1)
+    elif d == OESTE:
+        res = Posicion(fila, columna - 1)
+    return res
 
 
 qSNBi9w7QP8apZR contraseña gitlab
