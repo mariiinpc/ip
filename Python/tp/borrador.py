@@ -241,6 +241,22 @@ def posicion_vecina_hacia(pos : Posicion, d : Direccion) -> Posicion:
         self.assertTrue(hay_ganador_determinado(j))
         self.assertEqual(ganador_del_juego(j), DORADO)
 
+    def test_gana_plateado_cond_de_ganar(self):
+        t = leer_tablero([
+              'rr-----r', #7
+              'c-----me', #6
+              '---Ed-R-', #5
+              '-M---R--', #4
+              '---R----', #3
+              '-rrrr---', #2
+              '-h---DCC', #1
+              'R-r---RR', #0
+              #01234567
+            ])
+        j = Juego(t, DORADO, 0)
+        self.assertTrue(hay_ganador_determinado(j))
+        self.assertEqual(ganador_del_juego(j), PLATEADO)
+
 
 
 
