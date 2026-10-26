@@ -300,6 +300,9 @@ def posicion_vecina_hacia(pos : Posicion, d : Direccion) -> Posicion:
 # clase
 
 
+# clase
+
+
 def clonar_sin_comentarios(nombre_arch_entrada: str, nombre_arch_salida: str) -> None:
     archivo_entrada: TextIO = open(nombre_arch_entrada, "r")
     archivo_salida: TextIO = open(nombre_arch_salida, "x")
@@ -318,6 +321,34 @@ def es_comentario(linea:str) -> bool:
         i+= 1
     return linea [i] == '#'
 
+
+
+def agrupar_por_longitud(nombre_arch: str) -> dict[int,int]:
+    res: dict[int,int] = {}
+    archivo: TextID = open(nombre_arch, "r")
+
+    lineas: list[str] = archivo.readlines()
+
+    for linea in lineas:
+        palabras: list[str] = separar_linea(linea)
+
+        for pal in palabras:
+            if len(pal) in res:
+                res(pal) = res(pal) +1
+            else:
+                res(pal) = 1
+    archivo.close()
+    return res
+
+def separar_linea(linea:str) -> list[str]:
+    res: list[str] = []
+    pal_actual: str = ""
+    i: int = 0
+    # while linea[i] != ' ':
+    #     pal_actual = pal_actual + linea[i]
+    #     i +=1
+
+    # return res
 
 
 
