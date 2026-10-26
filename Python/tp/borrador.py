@@ -207,4 +207,41 @@ def posicion_vecina_hacia(pos : Posicion, d : Direccion) -> Posicion:
     return res
 # ARREGLAR posiion_en_tablero EN POSICION USA DOS SUBINDICES Y ES UNA SOLA TUPLA
 
+
+
+    def test_gana_dorado_no_hay_conejo_plateado(self):
+        t = leer_tablero([
+              '--------', #7
+              'c-----me', #6
+              '---Ed-R-', #5
+              '-M---R--', #4
+              '---R----', #3
+              '--------', #2
+              '-H-R-DCC', #1
+              'R-----RR', #0
+              #01234567
+            ])
+        j = Juego(t,PLATEADO, 0)
+        self.assertTrue(hay_ganador_determinado(j))
+        self.assertEqual(ganador_del_juego(j), DORADO)
+
+    def test_condiciones_de_ganar_exclusivas(self):
+        t = leer_tablero([
+              'rr---Re-', #7
+              'c-----mr', #6
+              '---Ed-R-', #5
+              '-M---R--', #4
+              '---R----', #3
+              '-rrrr---', #2
+              '-H---DCC', #1
+              'R-----RR', #0
+              #01234567
+            ])
+        j = Juego(t,DORADO, 0)
+        self.assertTrue(hay_ganador_determinado(j))
+        self.assertEqual(ganador_del_juego(j), DORADO)
+
+
+
+
 qSNBi9w7QP8apZR contraseña gitlab
