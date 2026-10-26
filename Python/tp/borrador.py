@@ -258,6 +258,43 @@ def posicion_vecina_hacia(pos : Posicion, d : Direccion) -> Posicion:
         self.assertEqual(ganador_del_juego(j), PLATEADO)
 
 
+#casos sin ganador
+
+    def test_no_gana_sin_conejos(self):
+        t = leer_tablero([
+              '--------', #7
+              'c-----me', #6
+              '---Ed---', #5
+              '-M------', #4
+              '--------', #3
+              '--------', #2
+              '-h---DCC', #1
+              '--------', #0
+              #01234567
+            ])
+        j = Juego(t,PLATEADO,0)
+        self.assertFalse(hay_ganador_determinado(j))
+        self.assertNotEqual(ganador_del_juego(j), PLATEADO)
+        self.assertNotEqual(ganador_del_juego(j), DORADO)
+
+    def test_no_gana_conejos_en_ambos_lados(self):
+        t = leer_tablero([
+              'rr-----r', #7
+              'c-----me', #6
+              '---Ed-R-', #5
+              '-M---R--', #4
+              '---R----', #3
+              '-rrrr---', #2
+              '-h---DCC', #1
+              'R-----RR', #0
+              #01234567
+            ])
+        j = Juego(t,DORADO,0)
+        self.assertFalse(hay_ganador_determinado(j))
+        self.assertNotEqual(ganador_del_juego(j), PLATEADO)
+        self.assertNotEqual(ganador_del_juego(j), DORADO)
+
+
 
 
 qSNBi9w7QP8apZR contraseña gitlab
